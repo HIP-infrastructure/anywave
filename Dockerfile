@@ -4,6 +4,7 @@ LABEL maintainer="nathalie.casati@chuv.ch"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG CARD
+ARG CI_REGISTRY
 ARG APP_NAME
 ARG APP_VERSION
 
