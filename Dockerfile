@@ -29,7 +29,8 @@ RUN apt-get update && \
 ENV APP_SHELL="no"
 ENV APP_CMD="anywave"
 ENV PROCESS_NAME="/usr/local/AnyWave/AnyWaveLinux"
-ENV DIR_ARRAY="AnyWave"
+ENV APP_DATA_DIR_ARRAY="AnyWave"
+ENV DATA_DIR_ARRAY=""
 
 HEALTHCHECK --interval=10s --timeout=10s --retries=5 --start-period=30s \
   CMD sh -c "/apps/${APP_NAME}/scripts/process-healthcheck.sh \
