@@ -26,7 +26,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-ENV APP_SHELL="no"
+ENV APP_SPECIAL="no"
 ENV APP_CMD="anywave"
 ENV PROCESS_NAME="/usr/local/AnyWave/AnyWaveLinux"
 ENV APP_DATA_DIR_ARRAY="AnyWave"
