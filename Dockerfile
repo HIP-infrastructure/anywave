@@ -20,7 +20,7 @@ RUN apt-get update && \
     curl libqt5charts5 libqt5concurrent5 libqt5multimediawidgets5 \
     libqt5printsupport5 libqt5qml5 libmatio9 libvtk7.1p-qt \
     libqwt-qt5-6 libqt5xml5 libqcustomplot2.0 libtbb2 && \ 
-    curl -Ok# https://meg.univ-amu.fr/AnyWave/anywave-${APP_VERSION}_amd64.deb && \
+    curl -sSOk https://meg.univ-amu.fr/AnyWave/anywave-${APP_VERSION}_amd64.deb && \
     dpkg -i anywave-${APP_VERSION}_amd64.deb && \
     rm anywave-${APP_VERSION}_amd64.deb && \
     apt-get remove -y --purge curl && \
