@@ -16,20 +16,29 @@ WORKDIR /apps/${APP_NAME}
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install --no-install-recommends -y \ 
-    curl libqt5charts5 libqt5concurrent5 libqt5multimediawidgets5 \
-    libqt5printsupport5 libqt5qml5 libmatio9 libvtk7.1p-qt \
-    libqwt-qt5-6 libqt5xml5 libqcustomplot2.0 libtbb2 && \ 
-    curl -Ok# https://meg.univ-amu.fr/AnyWave/anywave-${APP_VERSION}_amd64.deb && \
-    dpkg -i anywave-${APP_VERSION}_amd64.deb && \
-    rm anywave-${APP_VERSION}_amd64.deb && \
-    apt-get remove -y --purge curl && \
+    apt-get install --no-install-recommends -y \
+    git cmake build-essential libtbb-dev \
+    qt5-default qtbase5-dev libqt5multimediawidgets5 qtmultimedia5-dev \
+    libqt5opengl5-dev libqt5printsupport5 libqt5x11extras5-dev libqt5svg5-dev qtdeclarative5-dev \
+    libmatio-dev libvtk7-qt-dev libqwt-qt5-dev libqcustomplot-dev \
+    libopenblas-dev libfftw3-dev && \
+#clone project in our fork and checkout ${APP_VERSION}
+    git clone https://github.com/HIP-infrastructure/anywave-code.git anywave && \
+    cd anywave && git fetch && git checkout hip-v${APP_VERSION}
+
+#Launch build and then cleanup
+RUN mkdir -p build && \
+    cd build && \
+    cmake ../anywave -Wno-dev -DCMAKE_INSTALL_PREFIX=/usr/local && \
+    make -j7 && \
+    make install && \
+    apt-get remove -y --purge git cmake build-essential && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 ENV APP_SPECIAL="no"
-ENV APP_CMD="anywave"
+ENV APP_CMD="/usr/local/AnyWave/AnyWaveLinux"
 ENV PROCESS_NAME="/usr/local/AnyWave/AnyWaveLinux"
 ENV APP_DATA_DIR_ARRAY="AnyWave"
 ENV DATA_DIR_ARRAY=""
