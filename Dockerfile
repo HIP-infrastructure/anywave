@@ -18,10 +18,11 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y \
     git cmake build-essential libtbb-dev \
-    qt5-default qtbase5-dev libqt5multimediawidgets5 qtmultimedia5-dev \
-    libqt5opengl5-dev libqt5printsupport5 libqt5x11extras5-dev libqt5svg5-dev qtdeclarative5-dev \
+    qt5-default qtbase5-dev libqt5multimediawidgets5 \
+    qtmultimedia5-dev libqt5opengl5-dev libqt5printsupport5 \
+    libqt5x11extras5-dev libqt5svg5-dev qtdeclarative5-dev \
     libmatio-dev libvtk7-qt-dev libqwt-qt5-dev libqcustomplot-dev \
-    libopenblas-dev libfftw3-dev && \
+    libopenblas-dev libfftw3-dev libxcursor1 && \
 #clone project in our fork and checkout ${APP_VERSION}
     git clone https://github.com/HIP-infrastructure/anywave-code.git anywave && \
     cd anywave && git fetch && git checkout hip-v${APP_VERSION}
