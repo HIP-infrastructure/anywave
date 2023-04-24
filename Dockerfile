@@ -22,10 +22,13 @@ RUN apt-get update && \
     qtmultimedia5-dev libqt5opengl5-dev libqt5printsupport5 \
     libqt5x11extras5-dev libqt5svg5-dev qtdeclarative5-dev \
     libmatio-dev libvtk7-qt-dev libqwt-qt5-dev libqcustomplot-dev \
-    libopenblas-dev libfftw3-dev libxcursor1 && \
-#clone project in our fork and checkout ${APP_VERSION}
-    git clone https://github.com/HIP-infrastructure/anywave-code.git anywave && \
-    cd anywave && git fetch && git checkout hip-v${APP_VERSION}
+    libopenblas-dev libfftw3-dev libxcursor1
+
+#Clone project in our fork and checkout ${APP_VERSION}
+RUN git clone https://github.com/HIP-infrastructure/anywave-code.git anywave
+ADD "https://api.github.com/repos/HIP-infrastructure/anywave-code/commits?sha=hip-v${APP_VERSION}&per_page=1" anywave_latest_commit
+
+RUN cd anywave && git checkout hip-v${APP_VERSION} && git pull
 
 #Launch build and then cleanup
 RUN mkdir -p build && \
