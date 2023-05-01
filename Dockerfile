@@ -36,6 +36,9 @@ RUN mkdir -p build && \
     cmake ../anywave -Wno-dev -DCMAKE_INSTALL_PREFIX=/usr/local && \
     make -j7 && \
     make install && \
+    cd .. && \
+    rm -rf build && \
+    rm -rf anywave && \
     apt-get remove -y --purge git cmake build-essential && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
