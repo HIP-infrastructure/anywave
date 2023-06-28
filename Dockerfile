@@ -18,7 +18,7 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y \
     git cmake build-essential libtbb-dev \
-    qt5-default qtbase5-dev libqt5multimediawidgets5 \
+    qtbase5-dev libqt5multimediawidgets5 \
     qtmultimedia5-dev libqt5opengl5-dev libqt5printsupport5 \
     libqt5x11extras5-dev libqt5svg5-dev qtdeclarative5-dev \
     libmatio-dev libvtk7-qt-dev libqwt-qt5-dev libqcustomplot-dev \
